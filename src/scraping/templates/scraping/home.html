@@ -6,22 +6,29 @@
     {% for obj in object_list %}
 
         <div class="card my-3">
-            <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.title }}</a></h5>
+            <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.company }} | {{ obj.title }}</a></h5>
             <div class="card-body">
 
                 <p class="card-text">{{ obj.description }}</p>
+                    <p>{{obj.warehouse.name}} | {{obj.device.name}} |
+                        <small>{{obj.timestamp|date:"d-m-Y"}} </small></p>
 
 
             </div>
         </div>
 
 
-
-
-
-
-    <p></p>
-    <p></p>
     {% endfor %}
+<div class="row mx-auto">
+    <div class="col-md-6">
+        <form method="GET" action="">
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </form>
+    </div>
+</div>
+
 
 {% endblock %}
