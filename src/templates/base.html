@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+{% load static %}
+{% url 'accounts:login' as login_url%}
+{% url 'accounts:logout' as logout_url%}
+
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
@@ -17,15 +21,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                <a class="nav-link" href="#">Выйти</a>
-              </li>
+              {% if user.is_authenticated %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Выйти</a><!--{% url 'accounts:login' %}}-->
+                  </li>
               <li class="nav-item active">
                 <a class="nav-link" href="# ">Профиль</a>
               </li>
+              {% else %}
               <li class="nav-item active">
-                <a class="nav-link" href="#">Войти</a>
+                <a class="nav-link" href="#">Войти</a> <!--{% url 'accounts:login' %}}-->
               </li>
+                {% endif %}
+
+
             <li class="nav-item active">
                 <a class="nav-link" href="#">Регистрация</a>
             </li>

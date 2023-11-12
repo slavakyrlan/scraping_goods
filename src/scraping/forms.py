@@ -6,7 +6,11 @@ from scraping.models import Warehouse, Device
 class FindForm(forms.Form):
     warehouse = forms.ModelChoiceField(queryset=Warehouse.objects.all(),
                                        to_field_name="slug", required=False,
-                                       widget=forms.Select(attrs={'class':'form-control'}))
+                                       widget=forms.Select(attrs={'class':'form-control'}),
+                                       label='Склад'
+                                       )
     device = forms.ModelChoiceField(queryset=Device.objects.all(),
                                     to_field_name="slug", required=False,
-                                    widget=forms.Select(attrs={'class':'form-control'}))
+                                    widget=forms.Select(attrs={'class':'form-control'}),
+                                    label='Оборудование'
+                                    )

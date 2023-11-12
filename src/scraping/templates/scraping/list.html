@@ -27,23 +27,28 @@
 
     <div class="row">
         <div class="col">
-            <div class="pagination">
-                       <span class="step-links">
-                          {% if object_list.has_previous %}
-                               <a href="?warehouse={{warehouse}}&device={{ device }}&page=1">&laquo; first</a>
-                               <a href="?warehouse={{warehouse}}&device={{ device }}&page={{ object_list.previous_page_number }}">previous</a>
-                           {% endif %}
-
-                           <span class="current">
-                               Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
-                           </span>
-
-                       {% if object_list.has_next %}
-                               <a href="?warehouse={{warehouse}}&device={{ device }}&page={{ object_list.next_page_number }}">next</a>
-                               <a href="?warehouse={{warehouse}}&device={{ device }}&page={{ object_list.paginator.num_pages }}">last &raquo;</a>
-                           {% endif %}
-                        </span>
-                    </div>
+                <ul class="pagination">
+                       {% if object_list.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?warehouse={{warehouse}}&device={{ device }}&page=1" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                      {% endif %}
+                      {% for page in object_list.paginator.page_range %}
+                          <li class="page-item {% if page == object_list.number %} active {% endif %}">
+                              <a class="page-link" href="?warehouse={{warehouse}}&device={{ device }}&page={{page}}">{{page}}</a>
+                          </li>
+                      {% endfor %}
+                      {% if object_list.has_next %}
+                        <li class="page-item">
+                          <a class="page-link" href="?warehouse={{warehouse}}&device={{ device }}&page={{ object_list.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      {% endif %}
+                </ul>
+            
         </div>
     </div>
 {% endif %}
