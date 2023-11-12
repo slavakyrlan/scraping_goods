@@ -1,6 +1,6 @@
 {% load static %}
-{% url 'accounts:login' as login_url%}
-{% url 'accounts:logout' as logout_url%}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:logout' as logout_url %}
 
 <!doctype html>
 <html lang="ru">
@@ -23,14 +23,14 @@
           <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a><!--{% url 'accounts:login' %}}-->
+                    <a class="nav-link" href="{% url 'accounts:login' %} ">Выйти</a><!--{% url 'accounts:login' %}}-->
                   </li>
               <li class="nav-item active">
                 <a class="nav-link" href="# ">Профиль</a>
               </li>
               {% else %}
               <li class="nav-item active">
-                <a class="nav-link" href="#">Войти</a> <!--{% url 'accounts:login' %}}-->
+                <a class="nav-link" href="{% url 'accounts:login' %} ">Войти</a> <!--{% url 'accounts:login' %}}-->
               </li>
                 {% endif %}
 
