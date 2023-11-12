@@ -41,11 +41,13 @@ class MyUser(AbstractBaseUser):
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    warehouse = models.ForeignKey('scraping.Warehouse', on_delete=models.SET_NULL,null=True, blank=True)
-    device = models.ForeignKey('scraping.Device', on_delete=models.SET_NULL, null=True, blank=True)
+    warehouse = models.ForeignKey('scraping.Warehouse', on_delete=models.SET_NULL,
+                                  null=True, blank=True)
+    device = models.ForeignKey('scraping.Device', on_delete=models.SET_NULL,
+                               null=True, blank=True)
     send_email = models.BooleanField(default=True)
 
-    objects = MyUserManager()
+    objects = MyUserManager() ####
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

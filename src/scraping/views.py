@@ -4,6 +4,7 @@ from .forms import FindForm
 from .models import Information
 
 # Create your views here.
+
 def home_view(request):
     #print(request.GET)
 
@@ -22,3 +23,6 @@ def home_view(request):
         qs = Information.objects.filter(**_filter)
     return render(request,'scraping/home.html', {'object_list': qs,
                                                  'form': form})
+
+def list_biew(request):
+    pass
