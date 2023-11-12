@@ -23,7 +23,7 @@
           <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
                     <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:login' %} ">Выйти</a><!--{% url 'accounts:login' %}}-->
+                    <a class="nav-link" href="{% url 'accounts:logout' %} ">Выйти</a><!--{% url 'accounts:login' %}}-->
                   </li>
               <li class="nav-item active">
                 <a class="nav-link" href="# ">Профиль</a>
@@ -32,12 +32,13 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'accounts:login' %} ">Войти</a> <!--{% url 'accounts:login' %}}-->
               </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'accounts:register' %}">Регистрация</a>
+            </li>
                 {% endif %}
 
 
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Регистрация</a>
-            </li>
+
 
           </ul>
         </div>
