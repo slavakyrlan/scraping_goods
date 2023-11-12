@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Склад{% endblock %}
+
+
+{% block content %}
+    {% for obj in object_list %}
+
+        <div class="card my-3">
+            <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.company }} | {{ obj.title }}</a></h5>
+            <div class="card-body">
+
+                <p class="card-text">{{ obj.description }}</p>
+                    <p>{{obj.warehouse.name}} | {{obj.device.name}} |
+                        <small>{{obj.timestamp|date:"d-m-Y"}} </small></p>
+
+            </div>
+        </div>
+    {% empty %}
+        <div class="row">
+            <div class="mx-auto">
+                <h3>К сожалению, по Вашему запросу ничего не найдено</h3>
+            </div>
+        </div>
+    {% endfor %}
+
+{% if  object_list%}
+
+    <div class="row">
+        <div class="col">
+            <div class="pagination">
+                       <span class="step-links">
+                          {% if object_list.has_previous %}
+                               <a href="?warehouse={{warehouse}}&device={{ device }}&page=1">&laquo; first</a>
+                               <a href="?warehouse={{warehouse}}&device={{ device }}&page={{ object_list.previous_page_number }}">previous</a>
+                           {% endif %}
+
+                           <span class="current">
+                               Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                           </span>
+
+                       {% if object_list.has_next %}
+                               <a href="?warehouse={{warehouse}}&device={{ device }}&page={{ object_list.next_page_number }}">next</a>
+                               <a href="?warehouse={{warehouse}}&device={{ device }}&page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+                           {% endif %}
+                        </span>
+                    </div>
+        </div>
+    </div>
+{% endif %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form method="GET" action="{% url 'list' %}">
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

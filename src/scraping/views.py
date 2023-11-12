@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 
 from .forms import FindForm
@@ -10,9 +11,18 @@ def home_view(request):
 
     form = FindForm()
 
+    return render(request,'scraping/home.html', {'form': form})
+
+def list_view(request):
+    # print(request.GET)
+
+    form = FindForm()
+
     warehouse = request.GET.get('warehouse')
     device = request.GET.get('device')
-    qs = []
+
+    context = {'warehouse':warehouse, 'device':device, 'form': form}
+
     if warehouse or device:
         _filter = {}
         if warehouse:
@@ -21,8 +31,10 @@ def home_view(request):
             _filter['device__slug'] = device
 
         qs = Information.objects.filter(**_filter)
-    return render(request,'scraping/home.html', {'object_list': qs,
-                                                 'form': form})
 
-def list_biew(request):
-    pass
+        paginator = Paginator(qs, 10)
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['object_list'] = page_obj
+    return render(request, 'scraping/list.html', context)

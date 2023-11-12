@@ -3,30 +3,13 @@
 
 
 {% block content %}
-    {% for obj in object_list %}
-
-        <div class="card my-3">
-            <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.company }} | {{ obj.title }}</a></h5>
-            <div class="card-body">
-
-                <p class="card-text">{{ obj.description }}</p>
-                    <p>{{obj.warehouse.name}} | {{obj.device.name}} |
-                        <small>{{obj.timestamp|date:"d-m-Y"}} </small></p>
-
-
-            </div>
-        </div>
-    {% empty %}
-        <div class="row">
-            <div class="mx-auto">
-                <h3>К сожалению, по Вашему запросу ничего не найдено</h3>
-            </div>
-        </div>
-
-    {% endfor %}
 <div class="row">
-    <div class="col-md-6 mx-auto">
-        <form method="GET" action="">
+    <div class="col"><h2 class="text-center my-3">Склад оборудований компании ООО Тигр</h2></div>
+</div>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h4 class="my-2">Для просмотра доступных оборудований заполните форму по одному из полей (либо склад, либо устройство)</h4>
+        <form method="GET" action="{% url 'list' %}">
             <div class="form-group">
                 {{ form.as_p }}
             </div>
