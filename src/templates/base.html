@@ -8,37 +8,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
     <title>{% block title %}My amazing site{% endblock %}</title>
   </head>
   <body>
   <div class='container'>
 
-      <nav class="navbar navbar-expand-lg navbar-dark-light bg-light">
-      <a class="navbar-brand" href="{% url 'home' %}">Склад</a>
+      <nav class="navbar navbar-expand-lg navbar-dark-light" style="background-color: #bbbbbb;">
+      <a class="navbar-brand" href="{% url 'home' %}" id="brand" >Warehouse</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav" >
           <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:logout' %} ">Выйти</a><!--{% url 'accounts:login' %}}-->
+                    <a class="nav-link" href="{% url 'accounts:logout' %} " style="color: black;">Выйти</a><!--{% url 'accounts:login' %}}-->
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:update' %} ">Настройки</a><!--{% url 'accounts:login' %}}-->
+                    <a class="nav-link" href="{% url 'accounts:update' %} " style="color: black;">Профиль</a><!--{% url 'accounts:login' %}}-->
                 </li>
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="# ">Профиль</a>
-                </li>
+
               {% else %}
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'accounts:login' %} ">Войти</a> <!--{% url 'accounts:login' %}}-->
+                <a class="nav-link" href="{% url 'accounts:login' %} " style="color: black;">Войти</a> <!--{% url 'accounts:login' %}}-->
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'accounts:register' %}">Регистрация</a>
+                <a class="nav-link" href="{% url 'accounts:register' %}" style="color: black;">Регистрация</a>
             </li>
                 {% endif %}
 

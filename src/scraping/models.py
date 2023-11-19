@@ -1,5 +1,6 @@
 from django.db import models
 from .utils import *
+import jsonfield
 # Create your models here.
 
 
@@ -54,3 +55,11 @@ class Information(models.Model):
 
     def __str__(self):
         return self.title
+
+class Error(models.Model):
+    timestamp = models.DateField(auto_now_add=True)
+    data = jsonfield.JSONField()
+
+    def __str__(self):
+        return str(self.timestamp)
+
