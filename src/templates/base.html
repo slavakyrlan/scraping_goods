@@ -22,12 +22,17 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
-                    <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:logout' %} ">Выйти</a><!--{% url 'accounts:login' %}}-->
-                  </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="# ">Профиль</a>
-              </li>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:update' %} ">Настройки</a><!--{% url 'accounts:login' %}}-->
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="# ">Профиль</a>
+                </li>
               {% else %}
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'accounts:login' %} ">Войти</a> <!--{% url 'accounts:login' %}}-->

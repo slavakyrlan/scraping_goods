@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.hashers import check_password
 
+from scraping.models import Warehouse, Device
+
 User = get_user_model()
 
 class UserLoginForm(forms.Form):
@@ -38,3 +40,20 @@ class UserRegistrationForm(forms.ModelForm):
         if data['password'] != data['password2']:
             raise forms.ValidationError('Пароли не совпадают!')
         return data['password2']
+
+class UserUpdateForm(forms.Form):
+    warehouse = forms.ModelChoiceField(queryset=Warehouse.objects.all(),
+                                       to_field_name="slug", required=True,
+                                       widget=forms.Select(attrs={'class':'form-control'}),
+                                       label='Склад'
+                                       )
+    device = forms.ModelChoiceField(queryset=Device.objects.all(),
+                                    to_field_name="slug", required=True,
+                                    widget=forms.Select(attrs={'class':'form-control'}),
+                                    label='Оборудование'
+                                    )
+    send_email = forms.BooleanField(required=False, widget=forms.CheckboxInput,
+                                    label='Получать рассылку?')
+    class Meta:
+        model = User
+        fields = ('warehouse','device','send_email')
