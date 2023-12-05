@@ -3,6 +3,7 @@
 {% url 'accounts:logout' as logout_url %}
 {% url 'accounts:update' as update_url %}
 {% url 'accounts:register' as register_url %}
+{% url 'scraping:create' as create_url %}
 
 <!doctype html>
 <html lang="ru">
@@ -29,10 +30,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:logout' %} " style="color: black;">Выйти</a><!--{% url 'accounts:login' %}}-->
                 </li>
-
                 <li class="nav-item {% if request.path == update_url %} activate {% endif %} ">
                     <a class="nav-link" href="{% url 'accounts:update' %} " >Профиль</a><!--{% url 'accounts:login' %}}-->
                 </li>
+              <li class="nav-item {% if request.path == create_url %} activate {% endif %} ">
+                    <a class="nav-link" href="{% url 'create' %} " >Добавление</a><!--{% url 'accounts:login' %}}-->
+                </li>
+
 
 
               {% else %}
