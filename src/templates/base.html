@@ -1,6 +1,8 @@
 {% load static %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:logout' as logout_url %}
+{% url 'accounts:update' as update_url %}
+{% url 'accounts:register' as register_url %}
 
 <!doctype html>
 <html lang="ru">
@@ -16,7 +18,7 @@
   <body>
   <div class='container'>
 
-      <nav class="navbar navbar-expand-lg navbar-dark-light" style="background-color: #bbbbbb;">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #bbbbbb;">
       <a class="navbar-brand" href="{% url 'home' %}" id="brand" >Warehouse</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -28,16 +30,16 @@
                     <a class="nav-link" href="{% url 'accounts:logout' %} " style="color: black;">Выйти</a><!--{% url 'accounts:login' %}}-->
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:update' %} " style="color: black;">Профиль</a><!--{% url 'accounts:login' %}}-->
+                <li class="nav-item {% if request.path == update_url %} activate {% endif %} ">
+                    <a class="nav-link" href="{% url 'accounts:update' %} " >Профиль</a><!--{% url 'accounts:login' %}}-->
                 </li>
 
 
               {% else %}
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'accounts:login' %} " style="color: black;">Войти</a> <!--{% url 'accounts:login' %}}-->
+              <li class="nav-item active {% if request.path == login_url %} activate {% endif %}">
+                <a class="nav-link" href="{% url 'accounts:login' %}" >Войти</a> <!--{% url 'accounts:login' %}}-->
               </li>
-              <li class="nav-item active">
+              <li class="nav-item active {% if request.path == register_url %} activate {% endif %}">
                 <a class="nav-link" href="{% url 'accounts:register' %}" style="color: black;">Регистрация</a>
             </li>
                 {% endif %}

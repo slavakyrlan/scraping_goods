@@ -56,26 +56,8 @@ if users_dct:
             )
             msg.attach_alternative(_html, "text/html")
             msg.send()
-qs.Error.objects.filter(timestamp=today)
-subject = ''
-text_content = ''
-to = ADMIN_USER
-if qs.exists():
-    error = qs.first()
-    data = error.data.get('errors', [])
-    for i in data:
-        _html += f'<p"><a href="{i["url"]}">Error: {i["title"]}</a></p><br>'
-    subject += f"Ошибки скрапинга {today}"
-    text_content += "Ошибки скрапинга"
-    data = error.data.get('user_data')
-    if data:
-        _html += '<hr>'
-        _html += '<h2>Пожелания пользователей </h2>'
-        for i in data:
-            _html += f'<p">Склад: {i["warehouse"]}, Оборудование:{i["dewice"]},  Имейл:{i["email"]}</p><br>'
-        subject += f" Пожелания пользователей {today}"
-        text_content += "Пожелания пользователей"
-if subject:
-    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-    msg.attach_alternative(_html, "text/html")
-    msg.send()
+
+#if subject:
+       # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+       # msg.attach_alternative(_html, "text/html")
+       # msg.send()
